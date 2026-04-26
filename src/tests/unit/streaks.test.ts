@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateCurrentStreak } from '../../src/lib/streaks';
+import { calculateCurrentStreak } from '../../lib/streaks';
 
 /* MENTOR_TRACE_STAGE3_HABIT_A91 */
 
