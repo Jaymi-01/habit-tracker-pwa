@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getHabitSlug } from '../../src/lib/slug';
+import { getHabitSlug } from '../../lib/slug';
 
 describe('getHabitSlug', () => {
   it('returns lowercase hyphenated slug for a basic habit name', () => {
