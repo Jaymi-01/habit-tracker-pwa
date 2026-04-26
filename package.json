@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "if exist src\\public (xcopy /E /I /Y src\\public public)",
-    "prebuild": "if exist src\\public (xcopy /E /I /Y src\\public public)",
+    "predev": "node scripts/sync-public.mjs",
+    "prebuild": "node scripts/sync-public.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
