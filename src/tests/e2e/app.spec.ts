@@ -133,21 +133,18 @@ test.describe('Habit Tracker app', () => {
   test('loads the cached app shell when offline after the app has been loaded once', async ({ page, context }) => {
     await page.goto('/');
     
-    // Wait for SW to be registered and ready
     await page.evaluate(async () => {
       if ('serviceWorker' in navigator) {
         await navigator.serviceWorker.ready;
       }
     });
     
-    // Reload to ensure the service worker is controlling the page
     await page.reload();
     await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
     
     await context.setOffline(true);
     await page.reload();
     
-    // Should still load something (the cached shell)
     await expect(page.getByTestId('splash-screen').or(page.getByTestId('auth-login-email'))).toBeVisible();
   });
 });
