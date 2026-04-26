@@ -4,14 +4,18 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoginForm } from '@/components/auth/LoginForm';
 import Link from 'next/link';
+import { getSession } from '@/lib/auth';
+import { ROUTES } from '@/lib/constants';
 
 export default function LoginPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const session = localStorage.getItem('habit-tracker-session');
-    if (session && session !== 'null') {
-      router.replace('/dashboard');
+    const session = getSession();
+    if (session) {
+      Promise.resolve().then(() => {
+        router.replace(ROUTES.DASHBOARD);
+      });
     }
   }, [router]);
 
@@ -21,7 +25,7 @@ export default function LoginPage() {
       <LoginForm />
       <p className="mt-4 text-sm text-foreground/60">
         Don't have an account?{' '}
-        <Link href="/signup" className="text-primary hover:underline">
+        <Link href={ROUTES.SIGNUP} className="text-primary hover:underline">
           Sign up
         </Link>
       </p>
