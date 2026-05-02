@@ -2,9 +2,8 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { SplashScreen } from '@/components/shared/SplashScreen';
-import { getSession } from '@/lib/auth';
-import { ROUTES, SPLASH_DURATION } from '@/lib/constants';
+import { SplashScreen } from '@/src/components/shared/SplashScreen';
+import { getSession } from '@/src/lib/auth';
 
 export default function Home() {
   const router = useRouter();
@@ -12,15 +11,12 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       const session = getSession();
-      // Use a microtask to ensure router is ready
-      Promise.resolve().then(() => {
-        if (session) {
-          router.replace(ROUTES.DASHBOARD);
-        } else {
-          router.replace(ROUTES.LOGIN);
-        }
-      });
-    }, SPLASH_DURATION);
+      if (session) {
+        router.replace("/dashboard");
+      } else {
+        router.replace("/login");
+      }
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, [router]);

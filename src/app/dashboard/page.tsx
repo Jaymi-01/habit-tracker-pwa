@@ -2,17 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Session } from '@/types/auth';
-import { Habit } from '@/types/habit';
-import { HabitList } from '@/components/habits/HabitList';
-import { HabitForm } from '@/components/habits/HabitForm';
-import { toggleHabitCompletion } from '@/lib/habits';
-import { calculateCurrentStreak } from '@/lib/streaks';
-import { SplashScreen } from '@/components/shared/SplashScreen';
-import { ProtectedRoute } from '@/components/shared/ProtectedRoute';
-import { getSession, removeSession } from '@/lib/auth';
-import { STORAGE_KEYS, getFromStorage, saveToStorage } from '@/lib/storage';
-import { ROUTES } from '@/lib/constants';
+import { Session } from '@/src/types/auth';
+import { Habit } from '@/src/types/habit';
+import { HabitList } from '@/src/components/habits/HabitList';
+import { HabitForm } from '@/src/components/habits/HabitForm';
+import { toggleHabitCompletion } from '@/src/lib/habits';
+import { calculateCurrentStreak } from '@/src/lib/streaks';
+import { SplashScreen } from '@/src/components/shared/SplashScreen';
+import { ProtectedRoute } from '@/src/components/shared/ProtectedRoute';
+import { getSession, removeSession } from '@/src/lib/auth';
+import { STORAGE_KEYS, getFromStorage, saveToStorage } from '@/src/lib/storage';
+import { ROUTES } from '@/src/lib/constants';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -20,7 +20,6 @@ export default function DashboardPage() {
   const [habits, setHabits] = useState<Habit[]>([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingHabit, setEditingHabit] = useState<Habit | null>(null);
-  const [deletingHabit, setDeletingHabit] = useState<Habit | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -76,12 +75,9 @@ export default function DashboardPage() {
     setEditingHabit(null);
   };
 
-  const handleDeleteHabit = () => {
-    if (!deletingHabit) return;
-
-    const updatedHabits = habits.filter((h) => h.id !== deletingHabit.id);
+  const handleDeleteHabit = (habit: Habit) => {
+    const updatedHabits = habits.filter((h) => h.id !== habit.id);
     saveHabitsToLocalStorage(updatedHabits);
-    setDeletingHabit(null);
   };
 
   const handleToggleCompletion = (habit: Habit) => {
@@ -93,7 +89,8 @@ export default function DashboardPage() {
 
   const handleLogout = () => {
     removeSession();
-    router.push(ROUTES.LOGIN);
+    window.localStorage.removeItem('habit-tracker-session');
+    router.replace("/login");
   };
 
   const today = new Date().toISOString().split('T')[0];
@@ -167,7 +164,7 @@ export default function DashboardPage() {
             habits={habits}
             onToggle={handleToggleCompletion}
             onEdit={setEditingHabit}
-            onDelete={setDeletingHabit}
+            onDelete={handleDeleteHabit}
           />
         </main>
 
@@ -181,32 +178,6 @@ export default function DashboardPage() {
                 setEditingHabit(null);
               }}
             />
-          </div>
-        )}
-
-        {deletingHabit && (
-          <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-            <div className="bg-background border border-border rounded-lg p-6 max-w-sm w-full shadow-lg">
-              <h2 className="text-xl font-bold mb-2">Delete Habit?</h2>
-              <p className="text-foreground/60 mb-6">
-                Are you sure you want to delete "{deletingHabit.name}"? This action cannot be undone.
-              </p>
-              <div className="flex gap-2">
-                <button
-                  data-testid="confirm-delete-button"
-                  onClick={handleDeleteHabit}
-                  className="flex-1 py-2 bg-destructive text-destructive-foreground font-semibold rounded-md hover:bg-destructive/90 transition-colors"
-                >
-                  Delete
-                </button>
-                <button
-                  onClick={() => setDeletingHabit(null)}
-                  className="flex-1 py-2 bg-secondary text-secondary-foreground font-semibold rounded-md hover:bg-secondary/80 transition-colors"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
           </div>
         )}
       </div>

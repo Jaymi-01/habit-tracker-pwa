@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { LoginForm } from '@/components/auth/LoginForm';
+import { LoginForm } from '@/src/components/auth/LoginForm';
 import Link from 'next/link';
-import { getSession } from '@/lib/auth';
-import { ROUTES } from '@/lib/constants';
+import { getSession } from '@/src/lib/auth';
+import { ROUTES } from '@/src/lib/constants';
 
 export default function LoginPage() {
   const router = useRouter();
