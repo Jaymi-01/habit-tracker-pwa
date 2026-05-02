@@ -14,7 +14,6 @@ export const PWARegistration = () => {
         }
       };
 
-      // Use load event to avoid blocking page load
       if (document.readyState === 'complete') {
         registerSW();
       } else {

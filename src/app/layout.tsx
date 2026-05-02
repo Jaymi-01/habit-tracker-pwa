@@ -28,7 +28,7 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-import { PWARegistration } from "@/components/shared/PWARegistration";
+import { PWARegistration } from "@/src/components/shared/PWARegistration";
 
 export default function RootLayout({
   children,

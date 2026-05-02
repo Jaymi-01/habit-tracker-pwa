@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getSession } from '@/lib/auth';
-import { ROUTES } from '@/lib/constants';
+import { getSession } from '@/src/lib/auth';
+import { ROUTES } from '@/src/lib/constants';
 import { SplashScreen } from './SplashScreen';
 
 interface ProtectedRouteProps {

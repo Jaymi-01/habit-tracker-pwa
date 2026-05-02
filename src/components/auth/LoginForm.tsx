@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { User, Session } from '@/types/auth';
+import { User, Session } from '@/src/types/auth';
 
 export const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');

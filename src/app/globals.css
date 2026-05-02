@@ -3,10 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #09090b;
-  --primary: #10b981; /* Emerald 500 */
+  --primary: #10b981;
   --primary-foreground: #ffffff;
-  --secondary: #f4f4f5; /* Zinc 100 */
-  --secondary-foreground: #18181b; /* Zinc 900 */
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
   --accent: #f4f4f5;
   --accent-foreground: #18181b;
   --destructive: #ef4444;
@@ -59,7 +59,11 @@ body {
   font-family: var(--font-sans);
 }
 
-input:focus, button:focus {
+input:focus, button:focus, *:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
 }

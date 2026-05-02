@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { SignupForm } from '@/components/auth/SignupForm';
+import { SignupForm } from '@/src/components/auth/SignupForm';
 import Link from 'next/link';
-import { getSession } from '@/lib/auth';
-import { ROUTES } from '@/lib/constants';
+import { getSession } from '@/src/lib/auth';
+import { ROUTES } from '@/src/lib/constants';
 
 export default function SignupPage() {
   const router = useRouter();

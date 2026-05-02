@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Habit } from '@/types/habit';
+import { Habit } from '@/src/types/habit';
 import { HabitCard } from './HabitCard';
 
 interface HabitListProps {

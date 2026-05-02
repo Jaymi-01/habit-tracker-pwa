@@ -84,6 +84,9 @@ describe('habit form', () => {
     const deleteButton = screen.getByTestId('habit-delete-delete-me');
     fireEvent.click(deleteButton);
 
+    const confirmButton = screen.getByTestId('confirm-delete-button');
+    fireEvent.click(confirmButton);
+
     expect(mockOnDelete).toHaveBeenCalledWith(habit);
   });
 

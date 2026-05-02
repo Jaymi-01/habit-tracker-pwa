@@ -13,11 +13,14 @@ export default defineConfig({
       provider: 'v8',
       include: ['src/lib/**/*.ts'],
       reporter: ['text', 'json', 'html'],
+      thresholds: {
+        lines: 80,
+      },
     },
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, '.'),
     },
   },
 });

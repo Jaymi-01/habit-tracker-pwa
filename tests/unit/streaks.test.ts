@@ -1,8 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { calculateCurrentStreak } from '../../src/lib/streaks';
 
-/* MENTOR_TRACE_STAGE3_HABIT_A91 */
-
 describe('calculateCurrentStreak', () => {
   it('returns 0 when completions is empty', () => {
     expect(calculateCurrentStreak([])).toBe(0);
