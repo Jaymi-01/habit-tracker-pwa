@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { APP_NAME, ROUTES, SPLASH_DURATION } from '../../lib/constants';
+import { APP_NAME, ROUTES, SPLASH_DURATION } from '../../src/lib/constants';
 
 describe('constants', () => {
   it('has correct APP_NAME', () => {

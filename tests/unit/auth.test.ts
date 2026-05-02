@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { getSession, setSession, removeSession, getUsers, saveUser } from '../../lib/auth';
-import { User, Session } from '../../types/auth';
+import { getSession, setSession, removeSession, getUsers, saveUser } from '../../src/lib/auth';
+import { User, Session } from '../../src/types/auth';
 
 describe('auth utility', () => {
   beforeEach(() => {

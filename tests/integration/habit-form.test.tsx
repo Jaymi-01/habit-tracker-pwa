@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { HabitForm } from '../../components/habits/HabitForm';
-import { HabitCard } from '../../components/habits/HabitCard';
-import { Habit } from '../../types/habit';
+import { HabitForm } from '../../src/components/habits/HabitForm';
+import { HabitCard } from '../../src/components/habits/HabitCard';
+import { Habit } from '../../src/types/habit';
 
 describe('habit form', () => {
   const mockOnSave = vi.fn();

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { STORAGE_KEYS, getFromStorage, saveToStorage, removeFromStorage } from '../../lib/storage';
+import { STORAGE_KEYS, getFromStorage, saveToStorage, removeFromStorage } from '../../src/lib/storage';
 
 describe('storage utility', () => {
   beforeEach(() => {

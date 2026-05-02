@@ -63,15 +63,15 @@ PWA support is implemented using a standard manifest and a custom Service Worker
 ## Test Mapping
 The following test files verify specific behaviors:
 
-### Unit Tests (`src/tests/unit/`)
+### Unit Tests (`tests/unit/`)
 - `slug.test.ts`: Verifies `getHabitSlug` logic (hyphenation, sanitization).
 - `validators.test.ts`: Verifies `validateHabitName` (required field, length limits).
 - `streaks.test.ts`: Verifies `calculateCurrentStreak` (consecutive days, duplicate handling, missing days).
 - `habits.test.ts`: Verifies `toggleHabitCompletion` (adding/removing dates without mutation).
 
-### Integration Tests (`src/tests/integration/`)
+### Integration Tests (`tests/integration/`)
 - `auth-flow.test.tsx`: Verifies signup, duplicate email prevention, login validation, and session creation.
 - `habit-form.test.tsx`: Verifies habit creation, editing, deletion confirmation, and completion toggling.
 
-### E2E Tests (`src/tests/e2e/`)
+### E2E Tests (`tests/e2e/`)
 - `app.spec.ts`: Verifies the complete user journey, including splash screen redirects, authenticated routing, persistence after reload, logout flow, and basic offline PWA capability.
