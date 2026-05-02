@@ -6,7 +6,7 @@ export const STORAGE_KEYS = {
 
 export function getFromStorage<T>(key: string): T | null {
   if (typeof window === 'undefined') return null;
-  const item = localStorage.getItem(key);
+  const item = window.localStorage.getItem(key);
   if (!item) return null;
   try {
     return JSON.parse(item) as T;
@@ -17,10 +17,15 @@ export function getFromStorage<T>(key: string): T | null {
 
 export function saveToStorage<T>(key: string, value: T): void {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(key, JSON.stringify(value));
+  window.localStorage.setItem(key, JSON.stringify(value));
 }
 
 export function removeFromStorage(key: string): void {
   if (typeof window === 'undefined') return;
-  localStorage.removeItem(key);
+  window.localStorage.removeItem(key);
+}
+
+export function clearStorage(): void {
+  if (typeof window === 'undefined') return;
+  window.localStorage.clear();
 }

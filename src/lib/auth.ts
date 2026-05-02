@@ -1,5 +1,10 @@
-import { Session, User } from '@/types/auth';
+import { Session, User } from '@/src/types/auth';
 import { STORAGE_KEYS, getFromStorage, saveToStorage, removeFromStorage } from './storage';
+
+export const AUTH_ERRORS = {
+  USER_EXISTS: 'User already exists',
+  INVALID_CREDENTIALS: 'Invalid email or password',
+};
 
 export function getSession(): Session | null {
   return getFromStorage<Session>(STORAGE_KEYS.SESSION);

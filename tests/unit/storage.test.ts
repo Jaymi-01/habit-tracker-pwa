@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { STORAGE_KEYS, getFromStorage, saveToStorage, removeFromStorage } from '../../src/lib/storage';
+import { STORAGE_KEYS, getFromStorage, saveToStorage, removeFromStorage, clearStorage } from '../../src/lib/storage';
 
 describe('storage utility', () => {
   beforeEach(() => {
@@ -26,5 +26,13 @@ describe('storage utility', () => {
   it('returns null for invalid JSON', () => {
     window.localStorage.setItem('invalid', 'not-json');
     expect(getFromStorage('invalid')).toBeNull();
+  });
+
+  it('clears all items from localStorage', () => {
+    saveToStorage('key1', 'value1');
+    saveToStorage('key2', 'value2');
+    clearStorage();
+    expect(getFromStorage('key1')).toBeNull();
+    expect(getFromStorage('key2')).toBeNull();
   });
 });
